@@ -236,12 +236,12 @@ namespace Algorithm.PositionOptimizer
             {
                 env = new mosek.Env();
                 env.set_Stream(mosek.streamtype.log, new msgclass(""));
-                env.init();
+                //env.init();
 
                 task = new mosek.Task(env, 0, 0);
                 task.set_Stream(mosek.streamtype.log, new msgclass(""));
-                task.putmaxnumvar(NumVariable);
-                task.putmaxnumcon(NumConstraint);
+                //task.putmaxnumvar(NumVariable);
+                //task.putmaxnumcon(NumConstraint);
 
                 //task.putdouparam(mosek.dparam.intpnt_nl_tol_pfeas, 1.0e-1);
                 //task.putdouparam(mosek.dparam.intpnt_tol_dfeas, 1.0e-1);
@@ -250,22 +250,20 @@ namespace Algorithm.PositionOptimizer
                 //task.putdouparam(mosek.dparam.intpnt_nl_tol_mu_red, 1.0e-13);
 
 
-                task.append(mosek.accmode.con, NumConstraint);
-                task.append(mosek.accmode.var, NumVariable);
-
+                task.appendvars(NumVariable); task.appendcons(NumConstraint);
                 task.putcfix(0.0);
 
                 for (int j = 0; j < NumVariable; ++j)
                 {
                     task.putcj(j, 0);
-                    task.putbound(mosek.accmode.var, j, bkx[j], blx[j], bux[j]);
+                    task.putvarbound(j, bkx[j], blx[j], bux[j]);
 
-                    task.putavec(mosek.accmode.var, j, asub[j], aval[j]);
+                    task.putacol(j, asub[j], aval[j]);
                 }
 
                 for (int i = 0; i < NumConstraint; ++i)
                 {
-                    task.putbound(mosek.accmode.con, i, bkc[i], blc[i], buc[i]);
+                    task.putconbound(i, bkc[i], blc[i], buc[i]);
                 }
 
                 task.putobjsense(mosek.objsense.minimize);
@@ -277,15 +275,9 @@ namespace Algorithm.PositionOptimizer
                 mosek.solsta solsta;
                 mosek.prosta prosta;
 
-                task.getsolutionstatus(mosek.soltype.itr,
-                    out prosta,
-                    out solsta);
-                task.getsolutionslice(mosek.soltype.itr,
-                    mosek.solitem.xx,
-                    0,
-                    NumVariable,
-                    xx);
+                task.getsolsta(mosek.soltype.itr, out solsta); task.getprosta(mosek.soltype.itr, out prosta); task.getxx(mosek.soltype.itr, xx);
 
+                /*
                 switch (solsta)
                 {
                     case mosek.solsta.optimal:
@@ -306,7 +298,7 @@ namespace Algorithm.PositionOptimizer
                     default:
                         Console.WriteLine("Other solution status");
                         break;
-                }
+                }*/
             }
             catch (mosek.Exception e)
             {

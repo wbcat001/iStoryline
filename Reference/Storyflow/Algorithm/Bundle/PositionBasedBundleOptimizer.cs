@@ -190,30 +190,39 @@ namespace Algorithm.bundle
             {
                 env = new mosek.Env();
                 env.set_Stream(mosek.streamtype.log, new msgclass(""));
-                env.init();
+                // delete
+                //env.init();
 
                 task = new mosek.Task(env, 0, 0);
                 task.set_Stream(mosek.streamtype.log, new msgclass(""));
-                task.putmaxnumvar(NumVariable);
-                task.putmaxnumcon(NumConstraint);
+                //task.putmaxnumvar(NumVariable);
+                //task.putmaxnumcon(NumConstraint);
 
 
-                task.append(mosek.accmode.con, NumConstraint);
-                task.append(mosek.accmode.var, NumVariable);
+                //task.append(mosek.accmode.con, NumConstraint);
+                //task.append(mosek.accmode.var, NumVariable);
+                // add
+                task.appendvars(NumVariable); task.appendcons(NumConstraint);
 
                 task.putcfix(0.0);
 
                 for (int j = 0; j < NumVariable; ++j)
                 {
                     task.putcj(j, -2 * X[j]);
-                    task.putbound(mosek.accmode.var, j, bkx[j], blx[j], bux[j]);
+                    //task.putbound(mosek.accmode.var, j, bkx[j], blx[j], bux[j]);
 
-                    task.putavec(mosek.accmode.var, j, asub[j], aval[j]);
+                    //task.putavec(mosek.accmode.var, j, asub[j], aval[j]);
+                    task.putvarbound(j, bkx[j], blx[j], bux[j]);
+                    task.putacol(j, asub[j], aval[j]);
                 }
 
                 for (int i = 0; i < NumConstraint; ++i)
                 {
-                    task.putbound(mosek.accmode.con, i, bkc[i], blc[i], buc[i]);
+                    //task.putbound(mosek.accmode.con, i, bkc[i], blc[i], buc[i]);
+                    task.putconbound( i, bkc[i], blc[i], buc[i]);
+
+                  
+
                 }
 
                 task.putobjsense(mosek.objsense.minimize);
@@ -225,15 +234,17 @@ namespace Algorithm.bundle
                 mosek.solsta solsta;
                 mosek.prosta prosta;
 
-                task.getsolutionstatus(mosek.soltype.itr,
-                    out prosta,
-                    out solsta);
-                task.getsolutionslice(mosek.soltype.itr,
-                    mosek.solitem.xx,
-                    0,
-                    NumVariable,
-                    xx);
-
+                task.getsolsta(mosek.soltype.itr, out solsta); 
+                task.getprosta(mosek.soltype.itr, out prosta); task.getxx(mosek.soltype.itr, xx);
+                //task.getsolutionstatus(mosek.soltype.itr,
+                //    out prosta,
+                //    out solsta);
+                //task.getsolutionslice(mosek.soltype.itr,
+                //    mosek.solitem.xx,
+                //    0,
+                //    NumVariable,
+                //    xx);
+                /*
                 switch (solsta)
                 {
                     case mosek.solsta.optimal:
@@ -255,6 +266,7 @@ namespace Algorithm.bundle
                         Console.WriteLine("Other solution status");
                         break;
                 }
+                */
             }
             catch (mosek.Exception e)
             {
