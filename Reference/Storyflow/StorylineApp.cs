@@ -70,6 +70,20 @@ namespace Storyline
 
         public void SolveStory(Story story)
         {
+
+
+       /*
+        RabitAdder  
+        SessionDelete
+        Group
+        Perm
+        Align
+        BreakSession
+        OptimizePersist
+        MoveToPositive
+        Relax
+
+       */
             DateTime start = DateTime.Now;
             DateTime time = DateTime.Now;
             //GotoHellYuzuru(story);
@@ -80,7 +94,7 @@ namespace Storyline
             RabbitAdder.AddRabbit(story);
 
             SessionDeleter deleter = new SessionDeleter();
-            deleter.delete(story, Status.Config.SelectedSessions);
+            deleter.delete(story, Status.Config.SelectedSessions); // how to Select?
 
             Grouper grouper = new Grouper();
             grouper.group(story, Status.Config.GroupIds.ToHashSet());
@@ -117,7 +131,7 @@ namespace Storyline
             time = DateTime.Now;
             Console.WriteLine("persistent time: {0}", time - start);
             Status.isOptimizeDone = true;
-            MoveToPositive(story, _position);
+            MoveToPositive(story, _position); // ?
 
             //MessageBox.Show((DateTime.Now - start).ToString());
             start = DateTime.Now;

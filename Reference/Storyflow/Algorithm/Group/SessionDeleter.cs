@@ -5,6 +5,7 @@ using Structure;
 
 namespace Storyline
 {
+    // Delete Selected Session. I do not know how to, when select session.
     public class SessionDeleter
     {
         public void delete(Story story, List<int> sessionsToDelete)

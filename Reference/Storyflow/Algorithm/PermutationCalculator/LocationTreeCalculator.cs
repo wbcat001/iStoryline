@@ -14,8 +14,10 @@ namespace Algorithm.PermutationCalculator
     class LocationTreeCalculator : IPermutationCalculator
     {
         //static Random rand = new Random(DateTime.Now.Millisecond);
+        // Recieve story, return PositionTable
         public PositionTable<int> Calculate(Story story)
         {
+            // perm: update by CalculateFrame()
             PositionTable<int> perm = new PositionTable<int>(story.Characters.Count, story.FrameCount);
             for (int i = 0; i < story.Characters.Count; ++i)
                 for (int j = 0; j < story.FrameCount; ++j)
@@ -89,7 +91,7 @@ namespace Algorithm.PermutationCalculator
                 return perm;
         }
 
-        //
+        // important 
         private void CalculateFrame(Story story, Dictionary<int, List<int>>[] linesInSessions, Dictionary<int, List<int>>[] sessionsInLocations, PositionTable<int> perm, int frame, int reference)
         {
             Tuple<double, List<int>> tuple = DfsLocationSubtree(story, linesInSessions, sessionsInLocations, perm, story.LocationRoot, frame, reference);
@@ -97,7 +99,7 @@ namespace Algorithm.PermutationCalculator
             for (int i = 0; i < lineList.Count; ++i)
             {
                 int x = lineList[i];
-                perm[x, frame] = i;
+                perm[x, frame] = i; // 
             }
         }
 

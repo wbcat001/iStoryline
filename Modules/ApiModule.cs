@@ -11,7 +11,8 @@ using Newtonsoft.Json;
 namespace StorylineBackend.modules
 {
 
-
+    // Api Module
+    // upload , layout, update
     public class ApiModule : NancyModule
     {
         private IFileUploadHandler _fileUploadHandler;
@@ -34,7 +35,7 @@ namespace StorylineBackend.modules
             Get("/layout", async (args, ctx) =>
             {
                 var request = Request.Query["id"].ToString();
-                var result = await _layoutHandler.handleLayout(request);
+                var result = await _layoutHandler.handleLayout(request); // get layout
                 var code = result == null ? ApiResponse<LayoutResult>.ERR : ApiResponse<LayoutResult>.OK;
                 var status = result == null ? HttpStatusCode.BadRequest : HttpStatusCode.OK;
                 var response = new ApiResponse<LayoutResult>(code, result);

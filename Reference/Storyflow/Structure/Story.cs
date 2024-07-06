@@ -41,6 +41,7 @@ namespace Structure
             return _sessionToLocation[sessionId];
         }
 
+
         public static Story Read(string path)
         {
             Story story = new Story();
@@ -56,6 +57,7 @@ namespace Structure
 
             List<string> characterlist = new List<string>();
             List<int> sessionlist = new List<int>();
+
             story.LocationRoot = new LocationNode(-1);
             if (xmlNode != null && xmlNode.HasChildNodes)
             {
@@ -70,6 +72,7 @@ namespace Structure
             story.Sessions = new HashSet<int>();
             xmlNode = xmlDoc.SelectSingleNode("Story/Characters");
             List<List<Tuple<int, int, int>>> spansOfCharacters = new List<List<Tuple<int, int, int>>>();
+            // timestamps is hash set. 1, 2, 3, 5, 7, 8, 9, ...
             HashSet<int> timestamps = new HashSet<int>();
             foreach (XmlNode characterNode in xmlNode.ChildNodes)
             {
@@ -102,10 +105,13 @@ namespace Structure
             story.TimeStamps = timestamps.ToArray();
             int[] sessiondetails = sessionlist.ToArray();
             Array.Sort(story.TimeStamps);
+            Console.WriteLine(string.Join(" ", story.TimeStamps));
             foreach (var storySession in story.Sessions)
             {
                 story.sessionToCharacteres.Add(storySession, new HashSet<int>());
             }
+
+            // session Table (CharaCters.Count, TimeStamps.Length-1)
             story.SessionTable = new SessionTable(story.Characters.Count, story.TimeStamps.Length - 1);
             for (int id = 0; id < story.Characters.Count; ++id)
             {
@@ -116,13 +122,14 @@ namespace Structure
                         if (story.TimeStamps[frame] >= tuple.Item1 &&
                             story.TimeStamps[frame + 1] <= tuple.Item2)
                         {
-                            story.SessionTable[id, frame] = tuple.Item3;
+                            story.SessionTable[id, frame] = tuple.Item3; // session
                             story.sessionToCharacteres[tuple.Item3].Add(id);
                         }
                     }
                 }
             }
 
+            story.SessionTable.ShowTable();
             
             string[] timings = Array.ConvertAll(story.TimeStamps, x => x.ToString());
             string[] entities = characterlist.ToArray();
@@ -150,6 +157,7 @@ namespace Structure
                     story._sessionToLocation.Add(sessionId, locationId);
                 }
             }
+
 
             locations.Add(location);
             LocationNode curNode = new LocationNode(locationId);
