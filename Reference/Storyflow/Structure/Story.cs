@@ -129,7 +129,7 @@ namespace Structure
                 }
             }
 
-            story.SessionTable.ShowTable();
+            
             
             string[] timings = Array.ConvertAll(story.TimeStamps, x => x.ToString());
             string[] entities = characterlist.ToArray();
@@ -166,6 +166,12 @@ namespace Structure
             foreach (XmlNode child in xmlNode.ChildNodes)
             {
                 ParseXmlNode(story, child, curNode, locations);
+            }
+        }
+
+        public void ShowCharacters(){
+            foreach (var c in this.Characters){
+                Console.WriteLine(c.Name);
             }
         }
     }

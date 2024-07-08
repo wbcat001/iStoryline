@@ -57,6 +57,11 @@ namespace StorylineBackend.upload
                 var storylineApp = new StorylineApp();
                 await Task.Factory.StartNew(() => storylineApp.SolveStory(story));
                 var result = await postProcess(storylineApp._relaxedPos, story, storylineApp);
+                
+                // confirm output
+                // Show2Darray(result.sessionTable);
+                // Show2Darray(result.perm);
+
                 return result;
             }
             else
@@ -215,6 +220,21 @@ namespace StorylineBackend.upload
             }
 
             UploadDirectory = uploadDirectory;
+        }
+
+        public void Show2Darray(List<List<int>> array){
+            string output = "";
+            for (int i = 0; i < array.Count; i++)
+            {
+            for (int j = 0; j < array[i].Count; j++)
+            {
+                output += array[i][j].ToString();
+            }
+                output += "\n";
+            }
+            Console.WriteLine(output);
+            
+
         }
     }
 }

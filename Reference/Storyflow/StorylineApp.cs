@@ -82,8 +82,12 @@ namespace Storyline
         OptimizePersist
         MoveToPositive
         Relax
-
+            
        */
+
+            Console.WriteLine("SessionTable");
+            story.SessionTable.ShowTable();
+
             DateTime start = DateTime.Now;
             DateTime time = DateTime.Now;
             //GotoHellYuzuru(story);
@@ -164,6 +168,28 @@ namespace Storyline
             // PathGenerator pathGenerator = new PathGenerator();
             // List<List<Point>> paths = pathGenerator.Generate(_relaxedPos);
             // Console.WriteLine(Crossing.CountWiggle(story, _segments));
+            Console.WriteLine("characters");
+            story.ShowCharacters();
+            Console.WriteLine("SessionTable:");
+            story.SessionTable.ShowTable();
+            Console.WriteLine("PositionTable");
+            this._perm.ShowTable();
+        }
+
+
+        public void Show2Darray(List<List<int>> array){
+            string output = "";
+            for (int i = 0; i < array.Count; i++)
+            {
+            for (int j = 0; j < array[i].Count; j++)
+            {
+                output += array[i][j].ToString();
+            }
+                output += "\n";
+            }
+            Console.WriteLine(output);
+            
+
         }
     }
 
