@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Story>
+	<Locations>
+		<Location Name="All" Id="0" Visible="False" Color="Black" Sessions="1,2,3,4,5,6,7,8,9"/>
+	</Locations>
+	<Characters>
+		<Character Name="A">
+			<Span Start="1" End="2" Session="1" />
+			<Span Start="2" End="3" Session="2" />
+			<Span Start="3" End="6" Session="3" />
+			<Span Start="6" End="8" Session="4" />
+			<Span Start="8" End="9" Session="5" />
+			<Span Start="9" End="10" Session="6" />
+		</Character>
+
+		<Character Name="B">
+			<Span Start="1" End="2" Session="1" />
+			<Span Start="2" End="3" Session="2" />
+			<Span Start="3" End="6" Session="3" />
+			<Span Start="6" End="8" Session="4" />
+			<Span Start="8" End="9" Session="5" />
+			<Span Start="9" End="10" Session="6" />
+			<Span Start="10" End="13" Session="7" />
+			<Span Start="13" End="16" Session="8" />
+		</Character>
+
+		<Character Name="C">
+			<Span Start="1" End="2" Session="1" />
+
+			<Span Start="6" End="8" Session="9" />
+			<Span Start="13" End="16" Session="8" />
+
+
+		</Character>
+
+	</Characters>
+</Story>

@@ -1,0 +1,276 @@
+<?xml version="1.0" ?>
+<Characters>
+  <Character Name="Alice">
+    <Span Start="0" End="3" Session="1"/>
+    <Span Start="4" End="6" Session="2"/>
+    <Span Start="7" End="10" Session="3"/>
+    <Span Start="11" End="13" Session="4"/>
+    <Span Start="14" End="16" Session="5"/>
+    <Span Start="17" End="24" Session="6"/>
+    <Span Start="25" End="27" Session="7"/>
+    <Span Start="31" End="36" Session="8"/>
+    <Span Start="37" End="44" Session="9"/>
+    <Span Start="45" End="49" Session="10"/>
+    <Span Start="50" End="56" Session="11"/>
+    <Span Start="58" End="81" Session="12"/>
+    <Span Start="82" End="92" Session="13"/>
+    <Span Start="93" End="99" Session="14"/>
+    <Span Start="100" End="105" Session="15"/>
+    <Span Start="108" End="110" Session="16"/>
+    <Span Start="111" End="113" Session="17"/>
+    <Span Start="114" End="116" Session="18"/>
+    <Span Start="117" End="119" Session="19"/>
+    <Span Start="120" End="122" Session="20"/>
+    <Span Start="131" End="141" Session="22"/>
+    <Span Start="142" End="146" Session="23"/>
+    <Span Start="147" End="149" Session="24"/>
+    <Span Start="150" End="197" Session="25"/>
+    <Span Start="198" End="203" Session="26"/>
+    <Span Start="204" End="226" Session="27"/>
+    <Span Start="227" End="228" Session="28"/>
+    <Span Start="230" End="233" Session="29"/>
+    <Span Start="234" End="247" Session="30"/>
+    <Span Start="248" End="272" Session="31"/>
+    <Span Start="273" End="277" Session="32"/>
+    <Span Start="278" End="303" Session="33"/>
+    <Span Start="304" End="308" Session="34"/>
+    <Span Start="310" End="312" Session="35"/>
+    <Span Start="313" End="349" Session="36"/>
+    <Span Start="350" End="367" Session="37"/>
+    <Span Start="368" End="413" Session="38"/>
+    <Span Start="414" End="415" Session="39"/>
+    <Span Start="416" End="426" Session="40"/>
+    <Span Start="428" End="442" Session="42"/>
+    <Span Start="443" End="463" Session="43"/>
+    <Span Start="464" End="487" Session="44"/>
+    <Span Start="488" End="501" Session="45"/>
+    <Span Start="502" End="518" Session="46"/>
+    <Span Start="519" End="529" Session="47"/>
+    <Span Start="530" End="577" Session="48"/>
+    <Span Start="582" End="598" Session="49"/>
+    <Span Start="599" End="608" Session="50"/>
+    <Span Start="609" End="626" Session="51"/>
+    <Span Start="627" End="643" Session="52"/>
+    <Span Start="664" End="666" Session="54"/>
+    <Span Start="667" End="674" Session="55"/>
+    <Span Start="692" End="697" Session="57"/>
+    <Span Start="738" End="752" Session="60"/>
+    <Span Start="753" End="795" Session="61"/>
+    <Span Start="796" End="801" Session="62"/>
+    <Span Start="802" End="804" Session="63"/>
+    <Span Start="805" End="810" Session="64"/>
+  </Character>
+  <Character Name="White Rabbit">
+    <Span Start="0" End="3" Session="1"/>
+    <Span Start="7" End="10" Session="3"/>
+    <Span Start="11" End="13" Session="4"/>
+    <Span Start="14" End="16" Session="5"/>
+    <Span Start="37" End="44" Session="9"/>
+    <Span Start="45" End="49" Session="10"/>
+    <Span Start="58" End="81" Session="12"/>
+    <Span Start="108" End="110" Session="16"/>
+    <Span Start="120" End="122" Session="20"/>
+    <Span Start="443" End="463" Session="43"/>
+    <Span Start="627" End="643" Session="52"/>
+    <Span Start="664" End="666" Session="54"/>
+    <Span Start="667" End="674" Session="55"/>
+    <Span Start="675" End="689" Session="56"/>
+    <Span Start="727" End="735" Session="59"/>
+    <Span Start="738" End="752" Session="60"/>
+    <Span Start="753" End="795" Session="61"/>
+    <Span Start="805" End="810" Session="64"/>
+  </Character>
+  <Character Name="Mouse">
+    <Span Start="50" End="56" Session="11"/>
+    <Span Start="58" End="81" Session="12"/>
+    <Span Start="82" End="92" Session="13"/>
+    <Span Start="93" End="99" Session="14"/>
+    <Span Start="100" End="105" Session="15"/>
+    <Span Start="111" End="113" Session="17"/>
+  </Character>
+  <Character Name="Dodo">
+    <Span Start="58" End="81" Session="12"/>
+    <Span Start="82" End="92" Session="13"/>
+  </Character>
+  <Character Name="Eaglet">
+    <Span Start="58" End="81" Session="12"/>
+  </Character>
+  <Character Name="Lory">
+    <Span Start="100" End="105" Session="15"/>
+  </Character>
+  <Character Name="Dinah">
+    <Span Start="100" End="105" Session="15"/>
+    <Span Start="111" End="113" Session="17"/>
+    <Span Start="131" End="141" Session="22"/>
+  </Character>
+  <Character Name="Rabbit">
+    <Span Start="123" End="130" Session="21"/>
+    <Span Start="131" End="141" Session="22"/>
+    <Span Start="443" End="463" Session="43"/>
+  </Character>
+  <Character Name="Pat">
+    <Span Start="123" End="130" Session="21"/>
+  </Character>
+  <Character Name="Bill">
+    <Span Start="131" End="141" Session="22"/>
+    <Span Start="667" End="674" Session="55"/>
+    <Span Start="753" End="795" Session="61"/>
+  </Character>
+  <Character Name="puppy">
+    <Span Start="142" End="146" Session="23"/>
+    <Span Start="147" End="149" Session="24"/>
+  </Character>
+  <Character Name="Caterpillar">
+    <Span Start="150" End="197" Session="25"/>
+    <Span Start="198" End="203" Session="26"/>
+    <Span Start="627" End="643" Session="52"/>
+  </Character>
+  <Character Name="Pigeon">
+    <Span Start="204" End="226" Session="27"/>
+    <Span Start="227" End="228" Session="28"/>
+  </Character>
+  <Character Name="Footman">
+    <Span Start="230" End="233" Session="29"/>
+    <Span Start="230" End="233" Session="29"/>
+    <Span Start="234" End="247" Session="30"/>
+  </Character>
+  <Character Name="Duchess">
+    <Span Start="248" End="272" Session="31"/>
+    <Span Start="443" End="463" Session="43"/>
+    <Span Start="464" End="487" Session="44"/>
+    <Span Start="488" End="501" Session="45"/>
+    <Span Start="502" End="518" Session="46"/>
+    <Span Start="519" End="529" Session="47"/>
+    <Span Start="727" End="735" Session="59"/>
+    <Span Start="805" End="810" Session="64"/>
+  </Character>
+  <Character Name="cook">
+    <Span Start="248" End="272" Session="31"/>
+    <Span Start="727" End="735" Session="59"/>
+  </Character>
+  <Character Name="baby">
+    <Span Start="248" End="272" Session="31"/>
+    <Span Start="273" End="277" Session="32"/>
+  </Character>
+  <Character Name="Cheshire Cat">
+    <Span Start="278" End="303" Session="33"/>
+    <Span Start="443" End="463" Session="43"/>
+    <Span Start="464" End="487" Session="44"/>
+  </Character>
+  <Character Name="March Hare">
+    <Span Start="304" End="308" Session="34"/>
+    <Span Start="310" End="312" Session="35"/>
+    <Span Start="313" End="349" Session="36"/>
+    <Span Start="350" End="367" Session="37"/>
+    <Span Start="368" End="413" Session="38"/>
+    <Span Start="675" End="689" Session="56"/>
+    <Span Start="698" End="716" Session="58"/>
+    <Span Start="805" End="810" Session="64"/>
+  </Character>
+  <Character Name="Dormouse">
+    <Span Start="310" End="312" Session="35"/>
+    <Span Start="313" End="349" Session="36"/>
+    <Span Start="350" End="367" Session="37"/>
+    <Span Start="368" End="413" Session="38"/>
+    <Span Start="675" End="689" Session="56"/>
+    <Span Start="692" End="697" Session="57"/>
+    <Span Start="698" End="716" Session="58"/>
+    <Span Start="727" End="735" Session="59"/>
+  </Character>
+  <Character Name="Hatter">
+    <Span Start="310" End="312" Session="35"/>
+    <Span Start="313" End="349" Session="36"/>
+    <Span Start="350" End="367" Session="37"/>
+    <Span Start="368" End="413" Session="38"/>
+    <Span Start="675" End="689" Session="56"/>
+    <Span Start="698" End="716" Session="58"/>
+  </Character>
+  <Character Name="Queen of Hearts">
+    <Span Start="350" End="367" Session="37"/>
+    <Span Start="664" End="666" Session="54"/>
+    <Span Start="675" End="689" Session="56"/>
+  </Character>
+  <Character Name="Five">
+    <Span Start="416" End="426" Session="40"/>
+  </Character>
+  <Character Name="Seven">
+    <Span Start="416" End="426" Session="40"/>
+  </Character>
+  <Character Name="Queen">
+    <Span Start="416" End="426" Session="40"/>
+    <Span Start="427" End="427" Session="41"/>
+    <Span Start="428" End="442" Session="42"/>
+    <Span Start="443" End="463" Session="43"/>
+    <Span Start="464" End="487" Session="44"/>
+    <Span Start="519" End="529" Session="47"/>
+    <Span Start="530" End="577" Session="48"/>
+    <Span Start="698" End="716" Session="58"/>
+    <Span Start="727" End="735" Session="59"/>
+    <Span Start="753" End="795" Session="61"/>
+    <Span Start="796" End="801" Session="62"/>
+    <Span Start="805" End="810" Session="64"/>
+  </Character>
+  <Character Name="King">
+    <Span Start="427" End="427" Session="41"/>
+    <Span Start="428" End="442" Session="42"/>
+    <Span Start="464" End="487" Session="44"/>
+    <Span Start="664" End="666" Session="54"/>
+    <Span Start="667" End="674" Session="55"/>
+    <Span Start="675" End="689" Session="56"/>
+    <Span Start="698" End="716" Session="58"/>
+    <Span Start="727" End="735" Session="59"/>
+    <Span Start="738" End="752" Session="60"/>
+    <Span Start="753" End="795" Session="61"/>
+  </Character>
+  <Character Name="Knave">
+    <Span Start="428" End="442" Session="42"/>
+    <Span Start="664" End="666" Session="54"/>
+    <Span Start="753" End="795" Session="61"/>
+  </Character>
+  <Character Name="Two">
+    <Span Start="428" End="442" Session="42"/>
+  </Character>
+  <Character Name="executioner">
+    <Span Start="464" End="487" Session="44"/>
+  </Character>
+  <Character Name="Mock Turtle">
+    <Span Start="519" End="529" Session="47"/>
+    <Span Start="530" End="577" Session="48"/>
+    <Span Start="582" End="598" Session="49"/>
+    <Span Start="599" End="608" Session="50"/>
+    <Span Start="609" End="626" Session="51"/>
+    <Span Start="627" End="643" Session="52"/>
+    <Span Start="656" End="660" Session="53"/>
+    <Span Start="805" End="810" Session="64"/>
+  </Character>
+  <Character Name="Gryphon">
+    <Span Start="530" End="577" Session="48"/>
+    <Span Start="582" End="598" Session="49"/>
+    <Span Start="599" End="608" Session="50"/>
+    <Span Start="609" End="626" Session="51"/>
+    <Span Start="627" End="643" Session="52"/>
+    <Span Start="656" End="660" Session="53"/>
+    <Span Start="667" End="674" Session="55"/>
+    <Span Start="805" End="810" Session="64"/>
+  </Character>
+  <Character Name="Knave of Hearts">
+    <Span Start="675" End="689" Session="56"/>
+  </Character>
+  <Character Name="jury">
+    <Span Start="675" End="689" Session="56"/>
+    <Span Start="698" End="716" Session="58"/>
+    <Span Start="738" End="752" Session="60"/>
+  </Character>
+  <Character Name="Lizard">
+    <Span Start="738" End="752" Session="60"/>
+    <Span Start="753" End="795" Session="61"/>
+    <Span Start="805" End="810" Session="64"/>
+  </Character>
+  <Character Name="sister">
+    <Span Start="802" End="804" Session="63"/>
+    <Span Start="805" End="810" Session="64"/>
+  </Character>
+  <Character Name="pig-baby">
+    <Span Start="805" End="810" Session="64"/>
+  </Character>
+</Characters>
