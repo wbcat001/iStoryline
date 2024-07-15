@@ -39,7 +39,7 @@ namespace Algorithm.linerelaxer
                 }
                 //xfactor = 3 * (max - min) / story.TimeStamps[story.TimeStamps.Length - 1];
             }
-
+            // [character, frame]   xbase, xend, position[i,frame]
             // build up original table
             Tuple<double, double, double>[][] result = new Tuple<double, double, double>[story.Characters.Count][];
             for (int i = 0; i < story.Characters.Count; ++i)
