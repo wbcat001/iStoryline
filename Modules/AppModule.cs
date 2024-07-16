@@ -1,4 +1,5 @@
 ﻿using Nancy;
+using SQLitePCL;
 
 namespace StorylineBackend.modules
 {
@@ -7,6 +8,10 @@ namespace StorylineBackend.modules
         public AppModule()
         {
             Get("/", args => View["index"]);
+            Get("/Vue", args => View["Vue"]);
+            Get("/Plotly", args => View["Plotly"]);
+
+            // Get["/Vue"] = _ => View["Vue"];
         }
     }
 }
