@@ -9,7 +9,18 @@
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 </head>
-
+<div id=app></div>
+<div class="container">
+  <h1>Upload XML File and Layout</h1>
+  <form id="uploadForm">
+      <input type="file" id="fileInput" accept=".xml" required>
+      <button type="submit">Upload File</button>
+  </form>
+  <div class="results">
+      <h2>Results</h2>
+      <pre id="resultOutput"></pre>
+  </div>
+</div>
 <div id="plot" style="width:800px; height:600px;"></div>
 
 <script type=text/javascript src="~/js/plotly_test.js"></script>

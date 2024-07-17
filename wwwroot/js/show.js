@@ -1,5 +1,5 @@
 // fetchでAPIリクエストを行う関数
-async function uploadFile(file) {
+export async function uploadFile(file) {
     const formData = new FormData();
     formData.append('file', file);
 
@@ -25,7 +25,7 @@ async function uploadFile(file) {
     }
 }
 
-async function layoutStoryline(identifier) {
+export async function layoutStoryline(identifier) {
     try {
         const response = await fetch('http://localhost:5050/api/update', {
             method: 'POST',
