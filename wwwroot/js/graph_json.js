@@ -1,3 +1,74 @@
+const data_sample = 
+{
+	"nodes":[
+		{
+			"id": "Alice",
+			"group": "Cited Works",
+			"radius": 2,
+			"citing_patents_count": 2
+		},
+		{
+			"id": "Sister",
+			"group": "Cited Works",
+			"radius": 2,
+			"citing_patents_count": 2
+		},
+		{
+			"id": "Rabbit",
+			"group": "Cited Works",
+			"radius": 2,
+			"citing_patents_count": 2
+		},
+		{
+			"id": "Queen",
+			"group": "Cited Works",
+			"radius": 2,
+			"citing_patents_count": 2
+		},
+	],
+
+	"links": [
+		{
+			"source": "Alice",
+			"target": "Sister",
+			"value": 2,
+			"content": "a",
+			"relation": "a"
+		},
+		{
+			"source": "Sister",
+			"target": "Alice",
+			"value": 2,
+			"content": "a",
+			"relation": "a"
+		},
+		{
+			"source": "Alice",
+			"target": "Rabbit",
+			"value": 2,
+			"content": "a",
+			"relation": "a"
+		},
+		{
+			"source": "Alice",
+			"target": "Queen",
+			"value": 2,
+			"content": "a",
+			"relation": "a"
+		},
+		{
+			"source": "Queen",
+			"target": "Alice",
+			"value": 2,
+			"content": "a",
+			"relation": "a"
+		},
+	]
+}
+
+
+
+
 const data = {
 	"nodes": [
 		{

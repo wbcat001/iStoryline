@@ -1,19 +1,23 @@
 
 
-    console.log(data)
+    console.log(data);
+    console.log(data_sample);
+   
 
     // Specify the dimensions of the chart.
     const width = 928;
     const height = 680;
+    const scaleSize = 10;
   
     // Specify the color scale.
     const color = d3.scaleOrdinal(d3.schemeCategory10);
   
     // The force simulation mutates links and nodes, so create a copy
     // so that re-evaluating this cell produces the same result.
-    const links = data.links.map(d => ({...d}));
-    const nodes = data.nodes.map(d => ({...d}));
+    const links = data_sample.links.map(d => ({...d}));
+    const nodes = data_sample.nodes.map(d => ({...d}));
   
+    console.log(links);
     // Create a simulation with several forces.
     const simulation = d3.forceSimulation(nodes)
         .force("link", d3.forceLink(links).id(d => d.id))
@@ -28,7 +32,30 @@
         .attr("height", height)
         .attr("viewBox", [-width / 2, -height / 2, width, height])
         .attr("style", "max-width: 100%; height: auto;");
-  
+    
+
+    var Tooltip = d3.select("#Network")
+        .append("div")
+        .style("opacity", 1)
+        .attr("class", "tooltip")
+        .style("background-color", "white")
+        .style("border", "solid")
+        .style("border-width", "2px")
+        .style("border-radius", "5px")
+        .style("padding", "5px")
+    // var Tooltip = d3.select()
+
+    var mousemove = function(d) {
+        Tooltip
+        .html("name:" + d.id)
+        .style("left", (d3.mouse(this)[0]+70) + "px")
+        .style("top", (d3.mouse(this)[1]) + "px");
+
+        console.log(d);
+    };
+
+
+
     // Add a line for each link, and a circle for each node.
     const link = svg.append("g")
         .attr("stroke", "#999")
@@ -36,7 +63,8 @@
       .selectAll("line")
       .data(links)
       .enter()
-      .append("path")
+      .append("line")
+        // .attr("d": line)
         .attr("stroke-width", d => Math.sqrt(d.value));
   
     const node = svg.append("g")
@@ -46,29 +74,32 @@
       .data(nodes)
       .enter()
       .append("circle")
-        .attr("r", 5)
-        .attr("fill", d => color(d.group));
+        .attr("r", scaleSize * 5)
+        .attr("fill", d => color(d.group))
+        .on("mousemove", mousemove);
   
     node.append("title")
         .text(d => d.id);
   
     // Add a drag behavior.
-    node.call(d3.drag()
-          .on("start", dragstarted)
-          .on("drag", dragged)
-          .on("end", dragended));
+    // node.call(d3.drag()
+          
+
+    //       .on("start", dragstarted)
+    //       .on("drag", dragged)
+    //       .on("end", dragended));
     
     // Set the position attributes of links and nodes each time the simulation ticks.
     simulation.on("tick", () => {
       link
-          .attr("x1", d => d.source.x)
-          .attr("y1", d => d.source.y)
-          .attr("x2", d => d.target.x)
-          .attr("y2", d => d.target.y);
+          .attr("x1", d => scaleSize*d.source.x)
+          .attr("y1", d => scaleSize*d.source.y)
+          .attr("x2", d => scaleSize*d.target.x)
+          .attr("y2", d => scaleSize*d.target.y);
   
       node
-          .attr("cx", d => d.x)
-          .attr("cy", d => d.y);
+          .attr("cx", d => scaleSize*d.x)
+          .attr("cy", d => scaleSize*d.y);
     });
   
     // Reheat the simulation when drag starts, and fix the subject position.
@@ -91,7 +122,7 @@
       event.subject.fx = null;
       event.subject.fy = null;
     }
-  
+    
     // When this cell is re-run, stop the previous simulation. (This doesn’t
     // really matter since the target alpha is zero and the simulation will
     // stop naturally, but it’s a good practice.)
