@@ -10,6 +10,7 @@ namespace StorylineBackend.modules
             Get("/", args => View["index"]);
             Get("/Vue", args => View["Vue"]);
             Get("/Plotly", args => View["Plotly"]);
+            Get("/D3", args => View["D3"]);
 
             // Get["/Vue"] = _ => View["Vue"];
         }
