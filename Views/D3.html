@@ -14,10 +14,37 @@
 
   <div id="div_template"></div>
   <div id="Network"></div>
+  <div  id="Slider"></div>
   
   <!-- <script type=text/javascript src="~/js/d3_example.js"></script> -->
   <script type=text/javascript src="~/js/graph_json.js"></script>
+  <script type=text/javascript src="~/js/alice_relation_json.js"></script>
   <script type=text/javascript src="~/js/d3_network.js"></script>
+  <script type=text/javascript src="~/js/D3Component/double-slider.js"></script>
+
+  <script>
+
+    var svgSlider = d3.select("#Slider")
+      .append("svg")
+      .attr("width", 400)
+      .attr("height", 500)
+
+    var slider = new doubleSlider();
+
+    slider
+      .width(200)
+      .x(30)
+      .y(200)
+      .value(1.0)
+      .event(function(){
+        console.log("in event");
+        var v = slider.value();
+        console.log(v);
+      });
+
+    svgSlider.call(slider);
+  </script>
+
 </body>
 
 </html>

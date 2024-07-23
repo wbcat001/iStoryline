@@ -2,8 +2,11 @@
 
     console.log(data);
     console.log(data_sample);
-   
 
+    var plotlinks = relationJson;
+
+    // var plotNodes = 
+    
     // Specify the dimensions of the chart.
     const width = 928;
     const height = 680;
