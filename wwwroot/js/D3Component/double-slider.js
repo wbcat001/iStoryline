@@ -32,8 +32,7 @@ function doubleSlider(){
                 });
         }
 
-        var drag = d3.drag()
-            .on("drag", function(){
+        var drag = function(){
                 var newX = d3.mouse(this)[0];
                 
                 if(newX < x){
@@ -50,10 +49,9 @@ function doubleSlider(){
                 d3.select("#emptyLine").attr("x1", x + (value * width));
                 
 
-            })
+            }
 
-        var dragend = d3.drag()
-            .on("end", function(){
+        var dragend = function(){
                 if(event){
                     console.log("end");
                     event();
@@ -61,7 +59,7 @@ function doubleSlider(){
                 console.log("end function");
 
                 d3.event.sourceEvent.stopPropagation();
-            });
+            };
 
 
 
@@ -91,7 +89,9 @@ function doubleSlider(){
       
         
 
-        selection.selectAll("circle").call(drag).call(dragend);
+        selection.selectAll("circle").call(d3.drag()
+                                        .on("drag", drag)
+                                        .on("end", dragend));
     }
 
         

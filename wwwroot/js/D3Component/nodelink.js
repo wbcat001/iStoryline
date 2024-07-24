@@ -105,14 +105,13 @@ function nodelink(){
 
     function updateNodelink(selection){
 
-        const link = selection.selectAll("g").selectAll("line");
+        selection.selectAll("g").remove();
             
 
-        const node = selection.selectAll("g").selectAll("circle");
+        selection.selectAll("g").remove();
             
 
-        link.exit().remove();
-        node.exit().remove();
+    
 
         const simulation = d3.forceSimulation(nodes[value])
         .force("link", d3.forceLink(links[value]).id(d => d.id))
@@ -131,7 +130,9 @@ function nodelink(){
             console.log(Tooltip);
         };
 
-        link
+        const link = selection.append("g")
+            .attr("stroke", "#999")
+            .attr("stroke-opacity", 0.6)
         .selectAll("line")
         .data(links[value])
         .enter()
@@ -140,7 +141,8 @@ function nodelink(){
             .attr("stroke-width", d => Math.sqrt(d.value));
 
 
-        node
+        const node = 
+          selection.append("g")
           .selectAll("circle")
           .data(nodes[value])
           .enter()

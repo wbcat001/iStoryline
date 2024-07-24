@@ -39,7 +39,7 @@
     network
       .nodes(aliceJson["nodes"])
       .links(aliceJson["links"])
-      .value(0)
+      .value(10)
       .x(200)
       .y(300);
       
@@ -61,7 +61,7 @@
       .event(function(){
         console.log("in event");
         var v = slider.value();
-        network.value(Math.floor(v * 63));
+        network.value(Math.floor(v * 63)); // 
         network.update(svgNetwork);
         console.log(network.value());
         // console.log(v);
