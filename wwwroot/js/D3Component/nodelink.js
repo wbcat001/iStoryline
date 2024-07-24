@@ -105,11 +105,11 @@ function nodelink(){
 
     function updateNodelink(selection){
 
-        const link = selection.selectAll("g").selectAll("line")
-            .data(links[value]);
+        const link = selection.selectAll("g").selectAll("line");
+            
 
-        const node = selection.selectAll("g").selectAll("circle")
-            .data(nodes[value]);
+        const node = selection.selectAll("g").selectAll("circle");
+            
 
         link.exit().remove();
         node.exit().remove();
