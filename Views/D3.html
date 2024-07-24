@@ -14,15 +14,37 @@
 
   <div id="div_template"></div>
   <div id="Network"></div>
+  <div id="textArea"></div>
   <div  id="Slider"></div>
   
   <!-- <script type=text/javascript src="~/js/d3_example.js"></script> -->
   <script type=text/javascript src="~/js/graph_json.js"></script>
   <script type=text/javascript src="~/js/alice_relation_json.js"></script>
-  <script type=text/javascript src="~/js/d3_network.js"></script>
+  <!-- <script type=text/javascript src="~/js/d3_network.js"></script> -->
   <script type=text/javascript src="~/js/D3Component/double-slider.js"></script>
+  <script type=text/javascript src="~/js/D3Component/nodelink.js"></script>
 
   <script>
+
+    var svgNetwork = d3.select('#Network')
+      .append("svg")
+      .attr("width", 500)
+      .attr("height", 500);
+      
+
+    var network = new nodelink();
+    
+   
+
+    network
+      .nodes(aliceJson["nodes"])
+      .links(aliceJson["links"])
+      .value(0)
+      .x(200)
+      .y(300);
+      
+    svgNetwork.call(network, d3.select("#Network"));
+
 
     var svgSlider = d3.select("#Slider")
       .append("svg")
@@ -35,14 +57,20 @@
       .width(200)
       .x(30)
       .y(200)
-      .value(1.0)
+      .value(0.0)
       .event(function(){
         console.log("in event");
         var v = slider.value();
-        console.log(v);
+        network.value(Math.floor(v * 63));
+        network.update(svgNetwork);
+        console.log(network.value());
+        // console.log(v);
       });
 
     svgSlider.call(slider);
+
+
+
   </script>
 
 </body>

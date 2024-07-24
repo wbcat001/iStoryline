@@ -3,55 +3,86 @@
 // nodelink for network
 // receive: number return nodelink
 // d3.select("nodelink")
-
+// selection : svg
 function nodelink(){
     
     var width = 1000;
     var height = 600;
-    var scaleSize = 10;
+    var scaleSize = 5;
     var value;
     const color = d3.scaleOrdinal(d3.schemeCategory10);
+    // var textArea;
+    var event;
+    // data
     var links;
     var nodes;
+    var Tooltip;
 
-    const simulation = d3.forceSimulation(nodes)
-        .force("link", d3.forceLink(links).id(d => d.id))
-        .force("charge", d3.forceManyBody())
-        .force("x", d3.forceX())
-        .force("y", d3.forceY());
 
-    function nodelink(selection)
+
+    
+
+    function nodelink(selection, parent)
     {
         function drawLine(selection){
             return ;
         }
 
         function drawCircle(selection){
-            
+            return ;
         }
 
+        const simulation = d3.forceSimulation(nodes[value])
+        .force("link", d3.forceLink(links[value]).id(d => d.id))
+        .force("charge", d3.forceManyBody())
+        .force("x", d3.forceX())
+        .force("y", d3.forceY());
 
-
-        var Tooltip = selection.append("div")
+        Tooltip = parent.append("div")
+        // .html("tooltip area")
         .style("opacity", 1)
         .attr("class", "tooltip")
+        .attr("id", "tooltip")
         .style("background-color", "white")
         .style("border", "solid")
         .style("border-width", "2px")
         .style("border-radius", "5px")
-        .style("padding", "5px");
+        .style("padding", "5px")
+        .style("display", "inline-block");
+        
 
         var mousemove = function(d) {
+            // d3.select("#tooltip")
             Tooltip
             .html("name:" + d.id)
-            .style("left", (d3.mouse(this)[0]+70) + "px")
-            .style("top", (d3.mouse(this)[1]) + "px");
-    
-            console.log(d);
+            .style("left", (d3.mouse(this)[0]+70 ) + "px")
+            .style("top", (d3.mouse(this)[1] ) + "px");
+            
+            console.log(Tooltip);
         };
 
-        var link
-        var node
+        var link = selection.append("g")
+            .attr("stroke", "#999")
+            .attr("stroke-opacity", 0.6)
+        .selectAll("line")
+        .data(links[value])
+        .enter()
+        .append("line")
+            // .attr("d": line)
+            .attr("stroke-width", d => Math.sqrt(d.value));
+
+
+        var node = selection.append("g")
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 1.5)
+          .selectAll("circle")
+          .data(nodes[value])
+          .enter()
+          .append("circle")
+            .attr("r", scaleSize * 5)
+            .attr("fill", d => color(d.group))
+            .on("mousemove", mousemove);
+
 
         node.append("title")
         .text(d => d.id);
@@ -59,50 +90,126 @@ function nodelink(){
 
         simulation.on("tick", () => {
             link
-                .attr("x1", d => scaleSize*d.source.x)
-                .attr("y1", d => scaleSize*d.source.y)
-                .attr("x2", d => scaleSize*d.target.x)
-                .attr("y2", d => scaleSize*d.target.y);
+                .attr("x1", d => scaleSize*d.source.x + x)
+                .attr("y1", d => scaleSize*d.source.y + y)
+                .attr("x2", d => scaleSize*d.target.x + x)
+                .attr("y2", d => scaleSize*d.target.y + y);
         
             node
-                .attr("cx", d => scaleSize*d.x)
-                .attr("cy", d => scaleSize*d.y);
+                .attr("cx", d => scaleSize*d.x  + x)
+                .attr("cy", d => scaleSize*d.y + y);
           });
-
-
-        // Reheat the simulation when drag starts, and fix the subject position.
-        function dragstarted(event) {
-            if (!event.active) simulation.alphaTarget(0.3).restart();
-            event.subject.fx = event.subject.x;
-            event.subject.fy = event.subject.y;
-        }
-        
-        // Update the subject (dragged node) position during drag.
-        function dragged(event) {
-            event.subject.fx = event.x;
-            event.subject.fy = event.y;
-        }
-        
-        // Restore the target alpha so the simulation cools after dragging ends.
-        // Unfix the subject position now that it’s no longer being dragged.
-        function dragended(event) {
-            if (!event.active) simulation.alphaTarget(0);
-            event.subject.fx = null;
-            event.subject.fy = null;
-        }
-        
-        // When this cell is re-run, stop the previous simulation. (This doesn’t
-        // really matter since the target alpha is zero and the simulation will
-        // stop naturally, but it’s a good practice.)
-        // invalidation.then(() => simulation.stop());
 
     }
 
-    nodelink.nodes
-    nodelink.links
-    nodelink.event
-    nodelink.x
-    nodelink.y
-    nodelink.width
+
+    function updateNodelink(selection){
+
+        const link = selection.selectAll("g").selectAll("line")
+            .data(links[value]);
+
+        const node = selection.selectAll("g").selectAll("circle")
+            .data(nodes[value]);
+
+        link.exit().remove();
+        node.exit().remove();
+
+        const simulation = d3.forceSimulation(nodes[value])
+        .force("link", d3.forceLink(links[value]).id(d => d.id))
+        .force("charge", d3.forceManyBody())
+        .force("x", d3.forceX())
+        .force("y", d3.forceY());
+
+        
+        var mousemove = function(d) {
+            // d3.select("#tooltip")
+            Tooltip
+            .html("name:" + d.id)
+            .style("left", (d3.mouse(this)[0]+70 ) + "px")
+            .style("top", (d3.mouse(this)[1] ) + "px");
+            
+            console.log(Tooltip);
+        };
+
+        link
+        .selectAll("line")
+        .data(links[value])
+        .enter()
+        .append("line")
+            // .attr("d": line)
+            .attr("stroke-width", d => Math.sqrt(d.value));
+
+
+        node
+          .selectAll("circle")
+          .data(nodes[value])
+          .enter()
+          .append("circle")
+            .attr("r", scaleSize * 5)
+            .attr("fill", d => color(d.group))
+            .on("mousemove", mousemove);
+
+
+        node.append("title")
+        .text(d => d.id);
+
+
+        simulation.on("tick", () => {
+            link
+                .attr("x1", d => scaleSize*d.source.x + x)
+                .attr("y1", d => scaleSize*d.source.y + y)
+                .attr("x2", d => scaleSize*d.target.x + x)
+                .attr("y2", d => scaleSize*d.target.y + y);
+        
+            node
+                .attr("cx", d => scaleSize*d.x  + x)
+                .attr("cy", d => scaleSize*d.y + y);
+          });
+
+    }
+
+    nodelink.nodes = function(val){
+        nodes = val;
+        return nodelink;
+    };
+    nodelink.links = function(val){
+        links = val;
+        return nodelink;
+    };
+    nodelink.width = function(val){
+        width = val;
+        return nodelink;
+    };
+    nodelink.x = function(val){
+        x = val;
+        return nodelink;
+    };
+    nodelink.y = function(val){
+        y = val;
+        return nodelink;
+    };
+    nodelink.event = function(val){
+        event = val;
+        return nodelink;
+    }
+    nodelink.value = function(val){
+        if(val == null){
+            return value;
+        }
+        value = val;
+        return nodelink;
+    }
+
+   nodelink.update = function(selection){
+        updateNodelink(selection);
+        return nodelink;
+   }
+
+//    nodelink.textArea = function(val){
+//         textArea = val;
+//         return nodelink;
+//    }
+
+   return nodelink;
 
 }

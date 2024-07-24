@@ -1,6 +1,32 @@
 const data_sample = 
 {
-	"nodes":[
+	"nodes":[[
+		{
+			"id": "Alice",
+			"group": "Cited Works",
+			"radius": 2,
+			"citing_patents_count": 2
+		},
+		{
+			"id": "Sister",
+			"group": "Cited Works",
+			"radius": 2,
+			"citing_patents_count": 2
+		},
+		{
+			"id": "Rabbit",
+			"group": "Cited Works",
+			"radius": 2,
+			"citing_patents_count": 2
+		},
+		{
+			"id": "Queen",
+			"group": "Cited Works",
+			"radius": 2,
+			"citing_patents_count": 2
+		},
+	],
+	[
 		{
 			"id": "Alice",
 			"group": "Cited Works",
@@ -27,7 +53,9 @@ const data_sample =
 		},
 	],
 
-	"links": [
+	],
+
+	"links": [[
 		{
 			"source": "Alice",
 			"target": "Sister",
@@ -63,6 +91,29 @@ const data_sample =
 			"content": "a",
 			"relation": "a"
 		},
+	],
+	{
+		"source": "Alice",
+		"target": "Sister",
+		"value": 2,
+		"content": "a",
+		"relation": "a"
+	},
+	{
+		"source": "Sister",
+		"target": "Alice",
+		"value": 2,
+		"content": "a",
+		"relation": "a"
+	},
+	{
+		"source": "Alice",
+		"target": "Rabbit",
+		"value": 2,
+		"content": "a",
+		"relation": "a"
+	},
+	
 	]
 }
 

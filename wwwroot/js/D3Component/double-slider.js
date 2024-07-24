@@ -122,7 +122,9 @@ function doubleSlider(){
     }
 
     
-    
+    slider.update = function(){
+        return slider;
+    }
 
     return slider;
     

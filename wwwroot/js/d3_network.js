@@ -1,12 +1,11 @@
 
 
-    console.log(data);
-    console.log(data_sample);
-
-    var plotlinks = relationJson;
+    
+   
+    // var plotlinks = relationJson;
 
     // var plotNodes = 
-    
+
     // Specify the dimensions of the chart.
     const width = 928;
     const height = 680;
@@ -17,8 +16,8 @@
   
     // The force simulation mutates links and nodes, so create a copy
     // so that re-evaluating this cell produces the same result.
-    const links = data_sample.links.map(d => ({...d}));
-    const nodes = data_sample.nodes.map(d => ({...d}));
+    const links = data_sample.links[0].map(d => ({...d}));
+    const nodes = data_sample.nodes[0].map(d => ({...d}));
   
     console.log(links);
     // Create a simulation with several forces.
