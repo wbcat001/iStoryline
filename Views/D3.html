@@ -16,6 +16,7 @@
   <div id="Network"></div>
   <div id="textArea"></div>
   <div  id="Slider"></div>
+  <div id="StoryLine"></div>
   
   <!-- <script type=text/javascript src="~/js/d3_example.js"></script> -->
   <script type=text/javascript src="~/js/graph_json.js"></script>
@@ -23,8 +24,25 @@
   <!-- <script type=text/javascript src="~/js/d3_network.js"></script> -->
   <script type=text/javascript src="~/js/D3Component/double-slider.js"></script>
   <script type=text/javascript src="~/js/D3Component/nodelink.js"></script>
+  <script type=text/javascript src="~/js/D3Component/line.js"></script>
 
   <script>
+
+
+    var svgLine = d3.select("#StoryLine")
+      .append("svg")
+      .attr("width", 800)
+      .attr("height", 700);
+
+    var storyLine = new entityLine();
+
+    storyLine
+      .data(lineData)
+      .x(0)
+      .y(0);
+      
+    svgLine.call(storyLine);
+
 
     var svgNetwork = d3.select('#Network')
       .append("svg")
@@ -62,7 +80,7 @@
         console.log("in event");
         var v = slider.value();
         network.value(Math.floor(v * 63));
-        network.update(svgNetwork);
+        network.updateNodeLink(svgNetwork);
         console.log(network.value());
         // console.log(v);
       });
