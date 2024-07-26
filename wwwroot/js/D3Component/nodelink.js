@@ -104,10 +104,12 @@ function nodelink(){
 
 
     function updateNodelink(selection){
+        
+
+        console.log(nodes[value]);
+        console.log(links[value]);
 
         selection.selectAll("g").remove();
-            
-
         selection.selectAll("g").remove();
             
 
@@ -202,7 +204,7 @@ function nodelink(){
         return nodelink;
     }
 
-   nodelink.update = function(selection){
+    nodelink.update = function(selection){
         updateNodelink(selection);
         return nodelink;
    }

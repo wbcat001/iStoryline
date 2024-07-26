@@ -34,7 +34,7 @@
       .attr("width", 800)
       .attr("height", 700);
 
-    var storyLine = new entityLine();
+    var storyLine = new StoryLine();
 
     storyLine
       .data(lineData)
@@ -75,12 +75,12 @@
       .width(200)
       .x(30)
       .y(200)
-      .value(1.0)
+      .value(0.0)
       .event(function(){
         console.log("in event");
         var v = slider.value();
         network.value(Math.floor(v * 63));
-        network.updateNodeLink(svgNetwork);
+        network.update(svgNetwork);
 
         console.log(network.value());
         // console.log(v);

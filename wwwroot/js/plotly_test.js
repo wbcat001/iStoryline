@@ -70,7 +70,17 @@ document.getElementById('uploadForm').addEventListener('submit', async (event) =
       const identifier = await uploadFile(file);
 
       const result = await layoutStoryline(identifier);
-      
+      /*
+      const blob = new Blob([JSON.stringify(result, null, '  ')],{type: 'application\/json'});
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'sample.json';
+      link.click();
+      URL.revokeObjectURL(url);
+      */
+
+      console.log(result);
       var data = [];
 
       var colors = [];
@@ -97,7 +107,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (event) =
           type: 'scatter',
           name: 'Spline Curve',
           line: { shape: 'spline' },
-          marker: { size: 8, color: 'black' }
+          marker: { size: 2, color: 'black' }
         };
 
         // data of marker
@@ -108,7 +118,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (event) =
           mode: "markers",
           marker: {
             color: "red",
-            size: 3
+            size: 1
           }
         };
 
