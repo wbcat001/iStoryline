@@ -32,9 +32,9 @@ function doubleSlider(){
                 });
         }
 
-        var drag = d3.drag()
-            .on("drag", function(){
+        var drag = function(){
                 var newX = d3.mouse(this)[0];
+                
                 if(newX < x){
                     newX = x;
                 }else if (newX > x + width){
@@ -42,23 +42,24 @@ function doubleSlider(){
                 }
 
                 value = (newX - x) / width;
-                console.log("hello");
+               
 
                 d3.select(this).attr("cx", newX);
                 d3.select("#valueLine").attr("x2", x + (value * width));
                 d3.select("#emptyLine").attr("x1", x + (value * width));
-                //circle
                 
 
+            }
+
+        var dragend = function(){
                 if(event){
-                    console.log("event");
+                    console.log("end");
                     event();
-                   
                 }
-                // console.log("drag");
+                console.log("end function");
 
                 d3.event.sourceEvent.stopPropagation();
-            })
+            };
 
 
 
@@ -88,7 +89,9 @@ function doubleSlider(){
       
         
 
-        selection.selectAll("circle").call(drag);
+        selection.selectAll("circle").call(d3.drag()
+                                        .on("drag", drag)
+                                        .on("end", dragend));
     }
 
         
