@@ -4,6 +4,8 @@
 // receive: number return nodelink
 // d3.select("nodelink")
 // selection : svg
+
+// Data: relationship
 function nodelink(){
     
     var width = 1000;
@@ -18,7 +20,7 @@ function nodelink(){
     var nodes;
     var Tooltip;
 
-
+    
 
     
 
@@ -48,11 +50,12 @@ function nodelink(){
         .style("border-width", "2px")
         .style("border-radius", "5px")
         .style("padding", "5px")
-        .style("display", "inline-block");
+        .style("white-space", "pre-line")
+        // .style("display", "inline-block");
         
 
         var mousemove = function(d) {
-            // d3.select("#tooltip")
+            
             Tooltip
             .html("name:" + d.id)
             .style("left", (d3.mouse(this)[0]+70 ) + "px")
@@ -61,15 +64,27 @@ function nodelink(){
             console.log(Tooltip);
         };
 
+        var mousemovelink = function(d){
+            console.log(d);
+            Tooltip
+            .html(  d.source.id + "->" + d.target.id + "\n" 
+                // + "relationship: " + d.relationship + "\n"
+                + "detail: " + d.relationship
+            )
+            .style("left", (d3.mouse(this)[0]+70 ) + "px")
+            .style("top", (d3.mouse(this)[1] ) + "px");
+        }
+
         var link = selection.append("g")
             .attr("stroke", "#999")
-            .attr("stroke-opacity", 0.6)
+            .attr("stroke-opacity", 1)
         .selectAll("line")
         .data(links[value])
         .enter()
         .append("line")
             // .attr("d": line)
-            .attr("stroke-width", d => Math.sqrt(d.value));
+            .attr("stroke-width", 5)
+        .on("mousemove", mousemovelink);
 
 
         var node = selection.append("g")
@@ -86,6 +101,9 @@ function nodelink(){
 
         node.append("title")
         .text(d => d.id);
+
+        simulation.nodes(nodes[value])
+
 
 
         simulation.on("tick", () => {
@@ -132,6 +150,18 @@ function nodelink(){
             console.log(Tooltip);
         };
 
+        var mousemovelink = function(d){
+            console.log(d);
+            Tooltip
+            .html(  d.source.id + "->" + d.target.id + "\n" 
+                // + "relationship: " + d.relationship + "\n"
+                + "detail: " + d.relationship
+            )
+            .style("left", (d3.mouse(this)[0]+70 ) + "px")
+            .style("top", (d3.mouse(this)[1] ) + "px");
+        }
+
+
         const link = selection.append("g")
             .attr("stroke", "#999")
             .attr("stroke-opacity", 0.6)
@@ -140,7 +170,8 @@ function nodelink(){
         .enter()
         .append("line")
             // .attr("d": line)
-            .attr("stroke-width", d => Math.sqrt(d.value));
+            .attr("stroke-width", 5)
+            .on("mouseover", mousemovelink);
 
 
         const node = 
@@ -157,7 +188,8 @@ function nodelink(){
         node.append("title")
         .text(d => d.id);
 
-
+        simulation.nodes(nodes[value])
+        
         simulation.on("tick", () => {
             link
                 .attr("x1", d => scaleSize*d.source.x + x)

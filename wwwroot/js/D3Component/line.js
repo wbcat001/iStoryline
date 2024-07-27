@@ -8,14 +8,17 @@ function StoryLine(){
     var entityNum;
     var x;
     var y;
-    const margin = {top: 20, right: 30, bottom: 30, left: 40};
+    const margin = {top: 50, right: 30, bottom: 30, left: 40};
 
-    const width = 800 - margin.left - margin.right;
-    const height = 400 - margin.top - margin.bottom;
+    var width = 1000 - margin.left - margin.right;
+    var height = 600 - margin.top - margin.bottom;
+
+    var event;
+    var value=0;
 
     function entityLine(selection){
 
-
+        console.log(width);
         
 
         const xscale = d3.scaleLinear()
@@ -30,13 +33,19 @@ function StoryLine(){
         var dragend = function(){
             console.log("dragend in storyline");
             var dragged = d3.select(this).attr("session");
+            value = dragged;
             console.log(dragged);
+            if(event){
+                event();
+            }
+            d3.event.sourceEvent.stopPropagation();
+
         }
         
 
         var line = d3.line()
-        .x((d) => xscale(d.x))
-        .y((d) => yscale(d.y))
+        .x((d) => xscale(d.x) + x)
+        .y((d) => yscale(d.y) + y)
         // .attr("session", (d) => d.s)
         .curve(d3.curveMonotoneX);
 
@@ -52,20 +61,20 @@ function StoryLine(){
             .attr("d", line)
             .attr("stroke", "black")
             .attr("fill", "none")
-            .attr("stroke-width", "2")
+            .attr("stroke-width", "1")
             // .on("dragend", dragend);
 
             g
-                .selectAll("circle")
-                .data(data[i]["position"])
-                .enter()
-                .append("circle")
-                    .attr("cx", (d) => xscale(d.x))
-                    .attr("cy", (d) => yscale(d.y))
-                    .attr("r", 3)
-                    .attr("fill", "red")
-                    .attr("session" , (d) => d.s)
-                    .call(d3.drag().on("end", dragend));
+            .selectAll("circle")
+            .data(data[i]["position"])
+            .enter()
+            .append("circle")
+                .attr("cx", (d) => xscale(d.x) + x)
+                .attr("cy", (d) => yscale(d.y) + y)
+                .attr("r", 2)
+                .attr("fill", "red")
+                .attr("session" , (d) => d.s)
+                .call(d3.drag().on("end", dragend));
 
         }
         
@@ -85,8 +94,13 @@ function StoryLine(){
         return entityLine;
     }
 
-    entityLine.x = function(val){
-        x = val;
+    entityLine.width = function(val){
+        width = val - margin.left - margin.right;
+        return entityLine;
+    }
+
+    entityLine.height = function(val){
+        height = val - margin.top - margin.bottom;
         return entityLine;
     }
 
@@ -97,6 +111,15 @@ function StoryLine(){
         return entityLine;
     }
 
+    entityLine.event = function(val){
+        event = val;
+        return entityLine;
+    }
+
+    entityLine.value = function(val){
+        if(val == null){return value;}
+        return entityLine;
+    }
     
     return entityLine;
 }

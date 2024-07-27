@@ -4,44 +4,46 @@
 <head>
   <meta charset=utf-8>
   <title>iStoryline</title>
-  <link href="~/css/app.95ff9bacdcdfea44502d6d588596f9c2.css" rel=stylesheet>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <script src="https://d3js.org/d3.v4.js"></script>
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <link href="~/css/app.95ff9bacdcdfea44502d6d588596f9c2.css" rel=stylesheet>
+
 </head>
 
 <body>
   <div id=app></div>
+  <div class=""container>
+    <div class="row">
+      <div class="col-8">
+        <div id="StoryLine"></div>
+      </div>
+      <div class="col-4">
+        <div id="Network"></div>
+      </div>
+    </div>
 
+  </div>
   <div id="div_template"></div>
-  <div id="Network"></div>
   <div id="textArea"></div>
   <div  id="Slider"></div>
-  <div id="StoryLine"></div>
   
-  <!-- <script type=text/javascript src="~/js/d3_example.js"></script> -->
+  
+ 
   <script type=text/javascript src="~/js/graph_json.js"></script>
   <script type=text/javascript src="~/js/alice_relation_json.js"></script>
-  <!-- <script type=text/javascript src="~/js/d3_network.js"></script> -->
+ 
   <script type=text/javascript src="~/js/D3Component/double-slider.js"></script>
   <script type=text/javascript src="~/js/D3Component/nodelink.js"></script>
   <script type=text/javascript src="~/js/D3Component/line.js"></script>
-
+  <script type=text/javascript src="~/js/api_result.js"></script>
+  <script type=text/javascript src="~/js/preprocess/preprocess.js"></script>
+  
   <script>
 
-
-    var svgLine = d3.select("#StoryLine")
-      .append("svg")
-      .attr("width", 800)
-      .attr("height", 700);
-
-    var storyLine = new StoryLine();
-
-    storyLine
-      .data(lineData)
-      .x(0)
-      .y(0);
-      
-    svgLine.call(storyLine);
+    
 
 
     var svgNetwork = d3.select('#Network')
@@ -57,11 +59,38 @@
     network
       .nodes(aliceJson["nodes"])
       .links(aliceJson["links"])
-      .value(10)
+      .value(50)
       .x(200)
       .y(300);
       
     svgNetwork.call(network, d3.select("#Network"));
+
+
+    const containerStoryLine = document.getElementById("StoryLine").parentNode;
+    
+    var svgLine = d3.select("#StoryLine")
+      .append("svg")
+      .attr("width", containerStoryLine.clientWidth)
+      .attr("height", 800)
+
+    var storyLine = new StoryLine();
+
+    
+    storyLine
+      .data(lineArray)
+      .width(containerStoryLine.clientWidth)
+      .height(500)
+      .x(0)
+      .y(0)
+      .event(function(){
+        var v = storyLine.value();
+        console.log(v);
+        network.value(v);
+        network.update(svgNetwork);
+      })
+      
+      
+    svgLine.call(storyLine);
 
 
     var svgSlider = d3.select("#Slider")

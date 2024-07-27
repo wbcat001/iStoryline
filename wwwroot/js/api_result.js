@@ -1,4 +1,4 @@
-{
+const result = {
   "array": [
     {
       "character_id": 0,

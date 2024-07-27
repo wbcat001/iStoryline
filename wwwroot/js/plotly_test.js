@@ -70,7 +70,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (event) =
       const identifier = await uploadFile(file);
 
       const result = await layoutStoryline(identifier);
-      /*
+      /* download
       const blob = new Blob([JSON.stringify(result, null, '  ')],{type: 'application\/json'});
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
