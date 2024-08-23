@@ -23,7 +23,7 @@ function StoryLine(){
 
         const xscale = d3.scaleLinear()
             .domain([0, d3.max(data[0]["position"], d => d.x)])
-            .range([0, width]);
+            .range([0, width ]);
 
         const yscale = d3.scaleLinear()
             .domain([0, d3.max(data[0]["position"], d => d.y)])
@@ -42,12 +42,31 @@ function StoryLine(){
 
         }
         
+        var mouseenter = function(){
+            d3.select(this)
+            .transition()
+            .duration(200)
+            .style("opacity", 1.0)
+            .attr("stroke-width", 2)
+            .attr("r", 10)
+        }
+
+        var mouseleave = function(){
+            d3.select(this)
+            .transition()
+            .duration(200)
+            .style("opacity", 0)
+            .attr("r", 15)
+            .attr("storke-width", 0)
+        }
 
         var line = d3.line()
         .x((d) => xscale(d.x) + x)
         .y((d) => yscale(d.y) + y)
         // .attr("session", (d) => d.s)
-        .curve(d3.curveMonotoneX);
+        // .curve(d3.curveBumpX);
+        // .curve(d3.curveCatmullRom.alpha(0.3));
+        .curve(d3.curveMonotoneX)
 
         
 
@@ -59,7 +78,7 @@ function StoryLine(){
             g.append("path")
             .datum(data[i]["position"])
             .attr("d", line)
-            .attr("stroke", "black")
+            .attr("stroke", "#f649a7")
             .attr("fill", "none")
             .attr("stroke-width", "1")
             // .on("dragend", dragend);
@@ -71,10 +90,14 @@ function StoryLine(){
             .append("circle")
                 .attr("cx", (d) => xscale(d.x) + x)
                 .attr("cy", (d) => yscale(d.y) + y)
-                .attr("r", 2)
-                .attr("fill", "red")
+                .attr("r", 15)
+                .attr("fill", "#222429")
+                .attr("stroke", "#a93273")
+                .style("opacity", 0.0)
                 .attr("session" , (d) => d.s)
-                .call(d3.drag().on("end", dragend));
+                .call(d3.drag().on("end", dragend))
+                .on("mouseover", mouseenter)
+                .on("mouseout", mouseleave)
 
         }
         
